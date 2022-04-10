@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-10">
+                <div class="card-body store-body">
+                    <div class="product-info">
+                        <div class="product-gallery">
+                            <div class="product-gallery-featured">
+                                <img src="{{bookDetails.image_url}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <h4 class="product-title mb-2">{{bookDetails.title}}</h4>
+                        <h2 class="mb-5">By: {{bookDetails.publisher_id}}</h2>
+                        <br />
+
+                        <h2 class="mb-5">Book Information</h2>
+                        <p class="mb-5">Book isbn13 : {{bookDetails.isbn13}}</p>
+                        <p class="mb-5">Book language : {{bookDetails.language_id}}</p>
+                        <p class="mb-5">publication date : {{bookDetails.publication_date}}</p>
+                        <p class="mb-5">Book num of pages : {{bookDetails.num_pages}}</p>
+                        <br>
+                        <h2 class="mb-5">Description</h2>
+                        <p>{{bookDetails.description}}</p>
+                        <h3 class="product-price display-4"><span>{{bookDetails.price}}$ </span>
+                            {{bookDetails.discount}}%</h3>
+                        <br /><label for="quant">Quantity  : </label>
+
+                        <input type="number" name="quantity" min="1" id="quant" class="form-control mb-5 input-lg"
+                            placeholder="Choose the quantity" />
+                        <br />
+                        <br />
+                        <div class="btn btn-primary btn-lg btn-block">Buy Now</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

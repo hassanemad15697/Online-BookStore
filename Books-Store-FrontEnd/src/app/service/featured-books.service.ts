@@ -7,7 +7,7 @@ import { FeaturedBooks } from '../model/featured-books';
   providedIn: 'root'
 })
 export class FeaturedBooksService {
-  private baseUrl= 'http://localhost:8080/api/books?size=25'
+  private baseUrl= 'http://localhost:8080/api/books?size=25' 
 
   constructor(private httpClient: HttpClient) { }
   

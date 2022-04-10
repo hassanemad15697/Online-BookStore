@@ -14,7 +14,14 @@ import { SwiperOptions } from 'swiper';
 export class SearchResultsComponent implements OnInit {
   booksByCategory: FeaturedBooks[] = [];
   currentCategoryId: number;
+  previuosCategoryId: number;
   searchMode: boolean;
+
+  // pagination properties
+  pageNumber: number=1;
+  pageSize: number=20;
+  totalElements: number=0;
+
 
   constructor(private route: ActivatedRoute,
     private searchByCategoryService: SearchByCategoryService) { }
@@ -35,9 +42,12 @@ export class SearchResultsComponent implements OnInit {
 
   handleSearchProducts(){
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword')+'';
-    this.searchByCategoryService.searchBooks(theKeyword).subscribe(
+    this.searchByCategoryService.searchBooksPatinate(this.pageSize,this.pageNumber-1,theKeyword).subscribe(
       data => {
-        this.booksByCategory = data;
+        this.booksByCategory = data._embedded.books;
+        this.pageNumber=data.page.number+1;
+        this.pageSize=data.page.size;
+        this.totalElements=data.page.totalElements;
       }
     )
 
@@ -53,15 +63,23 @@ export class SearchResultsComponent implements OnInit {
       this.currentCategoryId = 0;
     }
 
-    this.searchByCategoryService.getBooksList(this.currentCategoryId).subscribe(
+    if(this.previuosCategoryId != this.currentCategoryId)
+    {
+      this.pageNumber=1;
+    }
+
+    this.previuosCategoryId = this.currentCategoryId;
+
+
+    this.searchByCategoryService.getBooksListPaginate(this.pageSize,this.pageNumber-1,this.currentCategoryId).subscribe(
       data => {
-        this.booksByCategory = data;
+        this.booksByCategory = data._embedded.books;
+        this.pageNumber=data.page.number+1;
+        this.pageSize=data.page.size;
+        this.totalElements=data.page.totalElements;
       }
     )
 
-    for (let featuredBook of this.booksByCategory) {
-      console.log(featuredBook.title);
-    }
   }
 
 

@@ -17,9 +17,12 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { HomeComponent } from './components/home/home.component';
 import { SearchByCategoryService } from './service/search-by-category.service';
 import { CommonModule } from '@angular/common';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes= [
   {path:'category/:id', component:SearchResultsComponent},
+  {path:'product/:id', component:ProductDetailsComponent},
   {path:'search/:keyword', component:SearchResultsComponent},
   {path:'category', component:HomeComponent},
   {path:'', component:HomeComponent},
@@ -38,13 +41,15 @@ const routes: Routes= [
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    NgxUsefulSwiperModule
+    NgxUsefulSwiperModule,
+    NgbModule
   ],
   providers: [
     FeaturedBooksService,

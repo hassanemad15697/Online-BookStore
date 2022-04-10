@@ -1,4 +1,5 @@
 export class FeaturedBooks {
+    id: number;
     title: string;
     isbn13: string;
     language_id: number;

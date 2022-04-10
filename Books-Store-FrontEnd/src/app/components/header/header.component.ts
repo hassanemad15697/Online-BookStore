@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BooksCategory } from 'src/app/model/books-category';
 import { SearchByCategoryService } from 'src/app/service/search-by-category.service';
@@ -12,7 +12,9 @@ import { SearchByCategoryService } from 'src/app/service/search-by-category.serv
 export class HeaderComponent implements OnInit {
 
   booksCategories: BooksCategory[] = [];
-
+  searchForm = this.document.querySelector('.search-form');
+  loginForm = this.document.querySelector('.login-form-container');
+  
   constructor(@Inject(DOCUMENT) private document: any,
     private searchByCategoryService: SearchByCategoryService,
     private router: Router) {
@@ -21,19 +23,17 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.listCategories();
 
-    let searchForm = this.document.querySelector('.search-form');
 
-    let loginForm = this.document.querySelector('.login-form-container');
 
     this.document.querySelector('#search-btn').onclick = () => {
-      searchForm.classList.toggle('active');
+      this.searchForm.classList.toggle('active');
     }
 
     this.document.querySelector('#login-btn').onclick = () => {
-      loginForm.classList.toggle('active');
+      this.loginForm.classList.toggle('active');
     }
     this.document.querySelector('#close-login-btn').onclick = () => {
-      loginForm.classList.remove('active');
+      this.loginForm.classList.remove('active');
     }
   }
 

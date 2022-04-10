@@ -1,20 +1,25 @@
-<br/>
+<br />
 <h1 class="heading"> <span>Search Results</span> </h1>
 
 <div class="card" *ngFor="let book of booksByCategory">
     <div class="icons">
-        <a href="#" class="fas fa-search"></a>
+        <a routerLink="/product/{{book.id}}" class="fas fa-search"></a>
         <a href="#" class="fas fa-heart"></a>
-        <a href="#" class="fas fa-eye"></a>
-    </div>  
-    <div class="image">
+        <a routerLink="/product/{{book.id}}" class="fas fa-eye"></a>
+    </div>
+    <div class="image" routerLink="/product/{{book.id}}">
         <img src="{{book.image_url}}" alt="">
     </div>
     <div class="content">
-        <h3>{{book.title}}</h3>
-        <div class="price">${{book.discount}} <span>${{book.price}}</span></div>
+        <h3 routerLink="/product/{{book.id}}">{{book.title}}</h3>
+        <div class="price">${{book.discount}} %{{book.discount}} <span>${{book.price}}</span></div>
         <a href="#" class="btn">add to cart</a>
     </div>
-
 </div>
 <h1 *ngIf="booksByCategory?.length==0" class="heading"> <span>There is no books found with this keyword</span> </h1>
+
+<br>
+<div class="col-12 justify-content-center">
+    <ngb-pagination [collectionSize]="totalElements" [(page)]="pageNumber" [pageSize]="pageSize" [rotate]="true"
+        [boundaryLinks]="true" (pageChange)="listBooks()"></ngb-pagination>
+</div>
