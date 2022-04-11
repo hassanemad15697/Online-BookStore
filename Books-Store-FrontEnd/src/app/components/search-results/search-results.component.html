@@ -12,14 +12,26 @@
     </div>
     <div class="content">
         <h3 routerLink="/product/{{book.id}}">{{book.title}}</h3>
-        <div class="price">${{book.discount}} %{{book.discount}} <span>${{book.price}}</span></div>
+        <div class="price">${{(book.price-(book.discount*book.price/100)).toFixed(2)}} %{{book.discount}}
+            <span>${{book.price}}</span>
+        </div>
         <a href="#" class="btn">add to cart</a>
     </div>
 </div>
 <h1 *ngIf="booksByCategory?.length==0" class="heading"> <span>There is no books found with this keyword</span> </h1>
 
 <br>
-<div class="col-12 justify-content-center">
-    <ngb-pagination [collectionSize]="totalElements" [(page)]="pageNumber" [pageSize]="pageSize" [rotate]="true"
-        [boundaryLinks]="true" (pageChange)="listBooks()"></ngb-pagination>
+
+<ngb-pagination [collectionSize]="totalElements" [(page)]="pageNumber" [pageSize]="pageSize" [rotate]="true"
+    [boundaryLinks]="true" (pageChange)="listBooks()"></ngb-pagination>
+
+<div class="paginate">
+
+    <h2 for="cars">Choose a car:</h2>
+    <select  (change)="updatePageSize($any($event.target).value)" style="font-size: 150%;">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="35">35</option>
+        <option value="50">50</option>
+    </select>
 </div>

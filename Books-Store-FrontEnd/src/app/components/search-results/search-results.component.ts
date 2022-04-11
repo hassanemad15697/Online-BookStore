@@ -13,14 +13,14 @@ import { SwiperOptions } from 'swiper';
 })
 export class SearchResultsComponent implements OnInit {
   booksByCategory: FeaturedBooks[] = [];
-  currentCategoryId: number;
-  previuosCategoryId: number;
-  searchMode: boolean;
+  currentCategoryId: number=0;
+  previuosCategoryId: number=0;
+  searchMode: boolean=false;
 
   // pagination properties
-  pageNumber: number=1;
-  pageSize: number=20;
-  totalElements: number=0;
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalElements: number = 0;
 
 
   constructor(private route: ActivatedRoute,
@@ -31,23 +31,24 @@ export class SearchResultsComponent implements OnInit {
       this.listBooks();
     })
   }
+
   listBooks() {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
     if (this.searchMode) {
-     this.handleSearchProducts();
+      this.handleSearchProducts();
     } else {
       this.handleListProducts();
     }
   }
 
-  handleSearchProducts(){
-    const theKeyword: string = this.route.snapshot.paramMap.get('keyword')+'';
-    this.searchByCategoryService.searchBooksPatinate(this.pageSize,this.pageNumber-1,theKeyword).subscribe(
+  handleSearchProducts() {
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword') + '';
+    this.searchByCategoryService.searchBooksPatinate(this.pageSize, this.pageNumber - 1, theKeyword).subscribe(
       data => {
         this.booksByCategory = data._embedded.books;
-        this.pageNumber=data.page.number+1;
-        this.pageSize=data.page.size;
-        this.totalElements=data.page.totalElements;
+        this.pageNumber = data.page.number + 1;
+        this.pageSize = data.page.size;
+        this.totalElements = data.page.totalElements;
       }
     )
 
@@ -63,26 +64,30 @@ export class SearchResultsComponent implements OnInit {
       this.currentCategoryId = 0;
     }
 
-    if(this.previuosCategoryId != this.currentCategoryId)
-    {
-      this.pageNumber=1;
+    if (this.previuosCategoryId != this.currentCategoryId) {
+      this.pageNumber = 1;
     }
 
     this.previuosCategoryId = this.currentCategoryId;
 
 
-    this.searchByCategoryService.getBooksListPaginate(this.pageSize,this.pageNumber-1,this.currentCategoryId).subscribe(
+    this.searchByCategoryService.getBooksListPaginate(this.pageSize, this.pageNumber - 1, this.currentCategoryId).subscribe(
       data => {
         this.booksByCategory = data._embedded.books;
-        this.pageNumber=data.page.number+1;
-        this.pageSize=data.page.size;
-        this.totalElements=data.page.totalElements;
+        this.pageNumber = data.page.number + 1;
+        this.pageSize = data.page.size;
+        this.totalElements = data.page.totalElements;
       }
     )
 
   }
 
-
+  updatePageSize(size: string) {
+    console.log(`size = ${size}`)
+    this.pageSize = Number(size);
+    this.pageNumber = 1;
+    this.listBooks();
+  }
 
 
   config: SwiperOptions = {

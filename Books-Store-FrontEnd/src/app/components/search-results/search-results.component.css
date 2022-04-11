@@ -1,18 +1,24 @@
+.paginate{
+    padding-top: 3rem; 
+    display: flex !important;
+    justify-content: center !important;
+}
 
 ngb-pagination ::ng-deep {
     padding-top: 3rem;  
     display: flex !important;
     justify-content: center !important;
-
+    padding:  20px 20px 20px 20px;
 }
 
 ngb-pagination ::ng-deep ul li {
+    padding:  20px 0px 20px 0px;
     float: left;
     list-style-type: none;
 }
 
 ngb-pagination ::ng-deep ul li a {
-    padding: 8px 16px;
+    padding:  10px 10px 10px 10px;
     border-style: solid;
     border-width: 1.5px;
     border-color: green;
@@ -23,3 +29,5 @@ ngb-pagination ::ng-deep ul>li.active>a {
     background-color: #219150 !important;
     color:white;
 }
+
+
