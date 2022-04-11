@@ -22,16 +22,16 @@
 
 <br>
 
-<ngb-pagination [collectionSize]="totalElements" [(page)]="pageNumber" [pageSize]="pageSize" [rotate]="true"
+<ngb-pagination [collectionSize]="totalElements" [(page)]="pageNumber" [pageSize]="pageSize" [maxSize]="10" [rotate]="true"
     [boundaryLinks]="true" (pageChange)="listBooks()"></ngb-pagination>
 
 <div class="paginate">
 
     <h2 for="cars">Choose a car:</h2>
     <select  (change)="updatePageSize($any($event.target).value)" style="font-size: 150%;">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="35">35</option>
+        <option value="15">15</option>
+        <option value="25">25</option>
+        <option value="40">40</option>
         <option value="50">50</option>
     </select>
 </div>
