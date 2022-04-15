@@ -11,8 +11,8 @@ export class SearchByCategoryService {
 
 
 
-  private baseUrl = 'http://localhost:8080/api'
 
+  private baseUrl = 'http://localhost:8080/api';
   constructor(private httpClient: HttpClient) { }
 
   getBooksList(currentCategoryId: number): Observable<FeaturedBooks[]> {
@@ -35,12 +35,48 @@ export class SearchByCategoryService {
     return this.httpClient.get<GetResponseBooksList>(searchByCategoryURL);
   }
 
-  getBookDetails(bookId: number): Observable<FeaturedBooks> {
+  getBookDetails(bookId: number): Observable<GetResponseBookDetails> {
     const searchByCategoryURL: string = `${this.baseUrl}/books/${bookId}`;
-    return this.httpClient.get<FeaturedBooks>(searchByCategoryURL);
+    return this.httpClient.get<GetResponseBookDetails>(searchByCategoryURL);
+  }
+  getCategoryName(url: string): Observable<GetResponseCategoryName> {
+    return this.httpClient.get<GetResponseCategoryName>(url);
+  }
+  getLanguageName(url: string): Observable<GetResponseLanguageName> {
+    return this.httpClient.get<GetResponseLanguageName>(url);
+  }
+  getPublisherName(url: string): Observable<GetResponsePublisherName> {
+    return this.httpClient.get<GetResponsePublisherName>(url);
   }
 }
 
+interface GetResponseCategoryName {
+  category_name: string;
+}
+interface GetResponseLanguageName {
+  language_name: string;
+}
+interface GetResponsePublisherName {
+  publisher_name: string;
+}
+interface GetResponseBookDetails {
+
+  id: number;
+  title: string;
+  isbn13: string;
+  num_pages: number;
+  publication_date: Date;
+  price: number;
+  discount: number;
+  description: string;
+  image_url: string;
+
+  _links: {
+    publisher: { href: string; }
+    category: { href: string; }
+    language: { href: string; }
+  }
+}
 interface GetResponseBooksList {
   _embedded: {
     books: FeaturedBooks[];

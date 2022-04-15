@@ -14,11 +14,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/home/home.component'; 
 import { SearchByCategoryService } from './service/search-by-category.service';
 import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartService } from './service/cart.service';
+import { ToastsContainer } from './components/toast/toast.component';
 
 const routes: Routes= [
   {path:'category/:id', component:SearchResultsComponent},
@@ -42,7 +44,8 @@ const routes: Routes= [
     FooterComponent,
     HomeComponent,
     SearchResultsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ToastsContainer
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -53,7 +56,8 @@ const routes: Routes= [
   ],
   providers: [
     FeaturedBooksService,
-    SearchByCategoryService
+    SearchByCategoryService,
+    CartService
     ],
   bootstrap: [AppComponent]
 })

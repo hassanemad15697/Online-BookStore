@@ -4,17 +4,20 @@
 
         <a href="#" class="logo"> <i class="fas fa-book"></i> bookly </a>
 
-        <div  class="search-form">
-            <input #myInput type="search" name="" placeholder="search here..."
-                    (keyup.enter)="doSearch(myInput.value)">
+        <div class="search-form">
+            <input #myInput type="search" name="" placeholder="search here..." (keyup.enter)="doSearch(myInput.value)">
             <label (click)="doSearch(myInput.value)" for="search-box" class="fas fa-search"></label>
         </div>
 
 
         <div class="icons">
             <div id="search-btn" class="fas fa-search"></div>
+            <a>
+                <div class="total">{{totalPrice}} $ <span> {{totalQuantity}}</span> </div>
+                <i class="fa fa-shopping-cart" aria-hidden="true">
+                </i>
+            </a>
             <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-shopping-cart"></a>
             <div id="login-btn" class="fas fa-user"></div>
         </div>
 
@@ -28,8 +31,8 @@
                 <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
                     <div class="row">
-                        <div class="column" *ngFor="let booksCategory of booksCategories" >
-                            <a  routerLink="category/{{booksCategory.id}}">{{booksCategory.category_name}}</a>
+                        <div class="column" *ngFor="let booksCategory of booksCategories">
+                            <a routerLink="category/{{booksCategory.id}}">{{booksCategory.category_name}}</a>
                         </div>
                     </div>
                 </div>
@@ -39,7 +42,7 @@
             <a href="#reviews">reviews</a>
             <a href="#blogs">blogs</a>
         </nav>
-        
+
     </div>
 
 </header>

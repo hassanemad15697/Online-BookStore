@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { data } from 'jquery';
+import { CartItem } from 'src/app/model/cart-item';
 import { FeaturedBooks } from 'src/app/model/featured-books';
+import { CartService } from 'src/app/service/cart.service';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { SearchByCategoryService } from 'src/app/service/search-by-category.service';
 import { SwiperOptions } from 'swiper';
@@ -13,9 +15,9 @@ import { SwiperOptions } from 'swiper';
 })
 export class SearchResultsComponent implements OnInit {
   booksByCategory: FeaturedBooks[] = [];
-  currentCategoryId: number=0;
-  previuosCategoryId: number=0;
-  searchMode: boolean=false;
+  currentCategoryId: number = 0;
+  previuosCategoryId: number = 0;
+  searchMode: boolean = false;
 
   // pagination properties
   pageNumber: number = 1;
@@ -24,7 +26,8 @@ export class SearchResultsComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute,
-    private searchByCategoryService: SearchByCategoryService) { }
+    private searchByCategoryService: SearchByCategoryService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -89,7 +92,10 @@ export class SearchResultsComponent implements OnInit {
     this.listBooks();
   }
 
-
+  addtoCart(book: FeaturedBooks) {
+    let cartItem = new CartItem(book);
+    this.cartService.addToCart(cartItem);
+  }
   config: SwiperOptions = {
     spaceBetween: 30,
     loop: true,

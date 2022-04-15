@@ -15,7 +15,7 @@
         <div class="price">${{(book.price-(book.discount*book.price/100)).toFixed(2)}} %{{book.discount}}
             <span>${{book.price}}</span>
         </div>
-        <a href="#" class="btn">add to cart</a>
+        <a (click)="addtoCart(book)" class="btn">add to cart</a>
     </div>
 </div>
 <h1 *ngIf="booksByCategory?.length==0" class="heading"> <span>There is no books found with this keyword</span> </h1>
@@ -27,7 +27,7 @@
 
 <div class="paginate">
 
-    <h2 for="cars">Choose a car:</h2>
+    <h2 for="cars">Choose a Page Size:</h2>
     <select  (change)="updatePageSize($any($event.target).value)" style="font-size: 150%;">
         <option value="15">15</option>
         <option value="25">25</option>

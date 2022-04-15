@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CartItem } from 'src/app/model/cart-item';
 import { FeaturedBooks } from 'src/app/model/featured-books';
+import { CartService } from 'src/app/service/cart.service';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 
@@ -10,24 +12,28 @@ import { SwiperOptions } from 'swiper/types/swiper-options';
 })
 export class FeaturedBooksComponent implements OnInit {
 
-  featuredBooks: FeaturedBooks[] =[];
-  constructor(private featuredBooksService: FeaturedBooksService) { }
+  featuredBooks: FeaturedBooks[] = [];
+  constructor(private featuredBooksService: FeaturedBooksService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.listBooks();
   }
 
-  listBooks(){
+  listBooks() {
     this.featuredBooksService.getBooksList().subscribe(
       data => {
         this.featuredBooks = data;
       }
     )
   }
-
-  config: SwiperOptions ={
+  addtoCart(book: FeaturedBooks) {
+    let cartItem = new CartItem(book);
+    this.cartService.addToCart(cartItem);
+  }
+  config: SwiperOptions = {
     spaceBetween: 30,
-    loop:true,
+    loop: true,
     centeredSlides: true,
     autoplay: {
       delay: 2000,
@@ -51,6 +57,6 @@ export class FeaturedBooksComponent implements OnInit {
         slidesPerView: 4,
       }
     }
-  
+
   };
 }
