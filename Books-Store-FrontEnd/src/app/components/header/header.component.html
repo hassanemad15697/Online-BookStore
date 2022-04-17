@@ -2,10 +2,10 @@
 
     <div class="header-1">
 
-        <a href="#" class="logo"> <i class="fas fa-book"></i> bookly </a>
+        <a routerLink="/" class="logo"> <i class="fas fa-book"></i> bookly </a>
 
-        <div class="search-form">
-            <input #myInput type="search" name="" placeholder="search here..." (keyup.enter)="doSearch(myInput.value)">
+        <div class="search-form"  id="searchForm">
+            <input #myInput type="search" placeholder="search here..." (keyup.enter)="doSearch(myInput.value)">
             <label (click)="doSearch(myInput.value)" for="search-box" class="fas fa-search"></label>
         </div>
 
@@ -17,7 +17,7 @@
                 <i class="fa fa-shopping-cart" aria-hidden="true">
                 </i>
             </a>
-            <a href="#" class="fas fa-heart"></a>
+            <a  class="fas fa-heart"></a>
             <div id="login-btn" class="fas fa-user"></div>
         </div>
 
@@ -57,3 +57,26 @@
     <a href="#blogs" class="fas fa-blog"></a>
 </nav>
 <!-- bottom navbar ends  -->
+
+<!-- login form  -->
+
+<div class="login-form-container">
+
+  <div id="close-login-btn" class="fas fa-times"></div>
+
+  <form action="">
+      <h3>sign in</h3>
+      <span>username</span>
+      <input type="email" name="" class="box" placeholder="enter your email" id="">
+      <span>password</span>
+      <input type="password" name="" class="box" placeholder="enter your password" id="">
+      <div class="checkbox">
+          <input type="checkbox" name="" id="remember-me">
+          <label for="remember-me"> remember me</label>
+      </div>
+      <input type="submit" value="sign in" class="btn">
+      <p>forget password ? <a href="#">click here</a></p>
+      <p>don't have an account ? <a href="#">create one</a></p>
+  </form>
+
+</div>

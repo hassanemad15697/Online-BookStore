@@ -46,7 +46,7 @@ public class Books {
     private int num_pages;
 
     @Column(name = "publication_date")
-    private Date publication_date;
+    private Date publicationDate;
 
 
     @Column(name = "price")

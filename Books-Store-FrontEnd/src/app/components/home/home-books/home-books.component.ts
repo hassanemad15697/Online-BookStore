@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FeaturedBooks } from 'src/app/model/featured-books';
+import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 
 @Component({
@@ -7,13 +9,22 @@ import { SwiperOptions } from 'swiper/types/swiper-options';
   styleUrls: ['./home-books.component.css']
 })
 export class HomeBooksComponent implements OnInit {
-
-  constructor() { }
+  discountedBooks: FeaturedBooks[] = [];
+  constructor(private featuredBooksService: FeaturedBooksService) { }
 
   ngOnInit(): void {
+    this.DiscountedBooksList();
   }
-  config: SwiperOptions ={
-    loop:true,
+
+  DiscountedBooksList() {
+    this.featuredBooksService.getDiscountedBooksList().subscribe(
+      data => {
+        this.discountedBooks = data;
+      }
+    )
+  }
+  config: SwiperOptions = {
+    loop: true,
     centeredSlides: true,
     autoplay: {
       delay: 2000,

@@ -65,7 +65,7 @@ interface GetResponseBookDetails {
   title: string;
   isbn13: string;
   num_pages: number;
-  publication_date: Date;
+  publicationDate: Date;
   price: number;
   discount: number;
   description: string;

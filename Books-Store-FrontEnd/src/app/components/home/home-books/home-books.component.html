@@ -8,13 +8,9 @@
             <a href="#" class="btn">shop now</a>
         </div>
         <swiper [config]="config" class="swiper books-slider">
+            
             <div class="swiper-wrapper">
-                <a href="#" class="swiper-slide"><img src="assets/image/book-1.png" alt=""></a>
-                <a href="#" class="swiper-slide"><img src="assets/image/book-2.png" alt=""></a>
-                <a href="#" class="swiper-slide"><img src="assets/image/book-3.png" alt=""></a>
-                <a href="#" class="swiper-slide"><img src="assets/image/book-4.png" alt=""></a>
-                <a href="#" class="swiper-slide"><img src="assets/image/book-5.png" alt=""></a>
-                <a href="#" class="swiper-slide"><img src="assets/image/book-6.png" alt=""></a>
+                <a routerLink="/product/{{discountedBook.id}}" class="swiper-slide" *ngFor="let discountedBook of discountedBooks"><img src="{{discountedBook.image_url}}" alt=""></a>
             </div>
             <img src="assets/image/stand.png" class="stand" alt="">
         </swiper>

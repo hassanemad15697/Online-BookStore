@@ -18,5 +18,6 @@ public interface BooksRepository extends JpaRepository<Books,Long> {
 
     Page<Books> findByTitleContaining(@RequestParam("title") String title, Pageable pageable);
 
-    
+    Page<Books> findByOrderByPublicationDateDesc( Pageable pageable);
+    Page<Books> findByOrderByDiscountDesc( Pageable pageable);
 }

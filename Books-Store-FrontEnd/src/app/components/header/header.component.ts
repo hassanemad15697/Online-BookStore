@@ -13,8 +13,7 @@ import { SearchByCategoryService } from 'src/app/service/search-by-category.serv
 export class HeaderComponent implements OnInit {
 
   booksCategories: BooksCategory[] = [];
-  searchForm = this.document.querySelector('.search-form');
-  loginForm = this.document.querySelector('.login-form-container');
+
 
   totalPrice: number = 0.00;
   totalQuantity: number = 0;
@@ -26,21 +25,34 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.document.querySelector('#search-btn').onclick = () => {
-      this.searchForm.classList.toggle('active');
-    }
-
-    this.document.querySelector('#login-btn').onclick = () => {
-      this.loginForm.classList.toggle('active');
-    }
-    this.document.querySelector('#close-login-btn').onclick = () => {
-      this.loginForm.classList.remove('active');
-    }
+    let loginForm = this.document.querySelector('.login-form-container');
+    let searchForm = this.document.querySelector('.search-form');
 
     this.listCategories();
     this.updateCartStatus();
+
+    this.document.querySelector('#search-btn').onclick = () => {
+      searchForm.classList.toggle('active');
+    }
+    this.document.querySelector('#login-btn').onclick = () => {
+      loginForm.classList.toggle('active');
+    }
+    this.document.querySelector('#close-login-btn').onclick = () => {
+      loginForm.classList.remove('active');
+    }
+
   }
+
+
+  @HostListener('window:scroll') onScroll() {
+    if (window.scrollY > 80) {
+      this.document.querySelector('.header .header-2').classList.add('active');
+    } else {
+      this.document.querySelector('.header .header-2').classList.remove('active');
+    }
+  }
+
+
   updateCartStatus() {
     this.cartService.totalPrice.subscribe(data => this.totalPrice = data);
     this.cartService.totalQuantity.subscribe(data => this.totalQuantity = data);

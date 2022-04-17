@@ -37,7 +37,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         this.bookDetails.isbn13 = data.isbn13;
         this.bookDetails.num_pages = data.num_pages;
         this.bookDetails.price = data.price;
-        this.bookDetails.publication_date = data.publication_date;
+        this.bookDetails.publication_date = data.publicationDate;
         this.bookDetails.title = data.title;
         this.searchByCategoryService.getCategoryName(data._links.category.href).subscribe(
           c => { this.bookDetails.category = c.category_name; }

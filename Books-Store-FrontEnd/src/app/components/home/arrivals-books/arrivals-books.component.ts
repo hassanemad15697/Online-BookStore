@@ -1,21 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import { FeaturedBooks } from 'src/app/model/featured-books';
+import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { SwiperOptions } from 'swiper';
-
 @Component({
   selector: 'app-arrivals-books',
   templateUrl: './arrivals-books.component.html',
   styleUrls: ['./arrivals-books.component.css']
 })
 export class ArrivalsBooksComponent implements OnInit {
-
-  constructor() { }
+  arrivalBooks1: FeaturedBooks[] = [];
+  arrivalBooks2: FeaturedBooks[] = [];
+  constructor(private featuredBooksService: FeaturedBooksService) { }
 
   ngOnInit(): void {
+    this.ArrivalsBooksList(0);
+    this.ArrivalsBooksList(1);
   }
+  ArrivalsBooksList(num: number) {
+    this.featuredBooksService.getArrivalBooksList(num).subscribe(
+      data => {
+        if (num == 0) {
+          this.arrivalBooks1 = data;
+        } else if (num == 1) {
+          this.arrivalBooks2 = data;
+        }
+      }
+    );
 
-  config: SwiperOptions={
+  }
+  config: SwiperOptions = {
     spaceBetween: 30,
-    loop:true,
+    loop: true,
     centeredSlides: true,
     autoplay: {
       delay: 2000,
