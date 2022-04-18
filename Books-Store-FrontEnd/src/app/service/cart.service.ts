@@ -36,6 +36,23 @@ export class CartService {
 
     this.computeTheCartTotal();
   }
+  decrementQuantity(theCartItem: CartItem) {
+    theCartItem!.quantity--;
+    this.computeTheCartTotal();
+  }
+
+  removeFromCart(theCartItem: CartItem) {
+    console.log("it's implemented")
+    let itemIndex = this.cartItems.findIndex(tempItem => tempItem.id = theCartItem.id);
+    if (itemIndex > -1) {
+      this.cartItems.splice(itemIndex, 1);
+    }
+    else {
+      this.computeTheCartTotal();
+    }
+  }
+
+
   computeTheCartTotal() {
 
     let totalPriceValue: number = 0.00;

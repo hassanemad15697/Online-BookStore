@@ -57,7 +57,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.showSuccess();
   }
   showSuccess() {
-    this.toastService.show('I am a success toast', { classname: 'bg-success text-light', delay: 10000 });
+    this.toastService.show('Book added successfuly to the cart', { classname: 'bg-success text-light ', delay: 5000  });
   }
   ngOnDestroy(): void {
     this.toastService.clear();

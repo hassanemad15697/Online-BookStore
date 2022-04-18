@@ -1,33 +1,36 @@
 <section class="featured" id="featured">
 
-<h1 class="heading"> <span>featured books</span> </h1>
+    <h1 class="heading"> <span>featured books</span> </h1>
 
-<swiper [config]="config" class="swiper featured-slider">
+    <swiper [config]="config" class="swiper featured-slider">
 
-    <div class="swiper-wrapper">
+        <div class="swiper-wrapper">
 
-        <div class="swiper-slide box" *ngFor="let featuredBook of featuredBooks" >
-            <div class="icons" routerLink="/product/{{featuredBook.id}}"> 
-                <a href="#" class="fas fa-search"></a>
-                <a href="#" class="fas fa-heart"></a>
-                <a href="#" class="fas fa-eye"></a>
+            <div class="swiper-slide box" *ngFor="let featuredBook of featuredBooks">
+                <div class="icons" routerLink="/product/{{featuredBook.id}}">
+                    <a href="#" class="fas fa-search"></a>
+                    <a href="#" class="fas fa-heart"></a>
+                    <a href="#" class="fas fa-eye"></a>
+                </div>
+                <div class="image" routerLink="/product/{{featuredBook.id}}">
+                    <img src="{{featuredBook.image_url}}" alt="">
+                </div>
+                <div class="content">
+                    <h3 routerLink="/product/{{featuredBook.id}}">{{featuredBook.title}}</h3>
+                    <div routerLink="/product/{{featuredBook.id}}" class="price">
+                        ${{(featuredBook.price-(featuredBook.discount*featuredBook.price/100)).toFixed(2)}}
+                        %{{featuredBook.discount}}
+                        <span>${{featuredBook.price}}</span>
+                    </div>
+                    <a (click)="addtoCart(featuredBook)" class="btn">add to cart</a>
+                </div>
             </div>
-            <div class="image" routerLink="/product/{{featuredBook.id}}">
-                <img src="{{featuredBook.image_url}}" alt="">
-            </div>
-            <div class="content" routerLink="/product/{{featuredBook.id}}">
-                <h3>{{featuredBook.title}}</h3>
-                <div class="price">${{(featuredBook.price-(featuredBook.discount*featuredBook.price/100)).toFixed(2)}} %{{featuredBook.discount}}
-                    <span>${{featuredBook.price}}</span></div>
-                <a (click)="addtoCart(featuredBook)" class="btn">add to cart</a>
-            </div>
+
         </div>
 
-    </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-
-</swiper>
+    </swiper>
 
 </section>

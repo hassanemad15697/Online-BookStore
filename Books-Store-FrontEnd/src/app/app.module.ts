@@ -14,21 +14,23 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-import { HomeComponent } from './components/home/home.component'; 
+import { HomeComponent } from './components/home/home.component';
 import { SearchByCategoryService } from './service/search-by-category.service';
 import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartService } from './service/cart.service';
 import { ToastsContainer } from './components/toast/toast.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
-const routes: Routes= [
-  {path:'category/:id', component:SearchResultsComponent},
-  {path:'product/:id', component:ProductDetailsComponent},
-  {path:'search/:keyword', component:SearchResultsComponent},
-  {path:'category', component:HomeComponent},
-  {path:'', component:HomeComponent},
-  {path:'**',  component:HomeComponent}
+const routes: Routes = [
+  { path: 'product-details', component: CartDetailsComponent },
+  { path: 'category/:id', component: SearchResultsComponent },
+  { path: 'product/:id', component: ProductDetailsComponent },
+  { path: 'search/:keyword', component: SearchResultsComponent },
+  { path: 'category', component: HomeComponent },
+  { path: '', component: HomeComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 
@@ -45,7 +47,8 @@ const routes: Routes= [
     HomeComponent,
     SearchResultsComponent,
     ProductDetailsComponent,
-    ToastsContainer
+    ToastsContainer,
+    CartDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -58,7 +61,7 @@ const routes: Routes= [
     FeaturedBooksService,
     SearchByCategoryService,
     CartService
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

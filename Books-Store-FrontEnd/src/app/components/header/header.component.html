@@ -4,7 +4,7 @@
 
         <a routerLink="/" class="logo"> <i class="fas fa-book"></i> bookly </a>
 
-        <div class="search-form"  id="searchForm">
+        <div class="search-form" id="searchForm">
             <input #myInput type="search" placeholder="search here..." (keyup.enter)="doSearch(myInput.value)">
             <label (click)="doSearch(myInput.value)" for="search-box" class="fas fa-search"></label>
         </div>
@@ -12,20 +12,20 @@
 
         <div class="icons">
             <div id="search-btn" class="fas fa-search"></div>
-            <a>
+            <a routerLink="/product-details">
                 <div class="total">{{totalPrice}} $ <span> {{totalQuantity}}</span> </div>
                 <i class="fa fa-shopping-cart" aria-hidden="true">
                 </i>
             </a>
-            <a  class="fas fa-heart"></a>
+            <a class="fas fa-heart"></a>
             <div id="login-btn" class="fas fa-user"></div>
         </div>
 
     </div>
 
     <div class="header-2">
-
-        <nav class="navbar">
+ 
+        <nav class="nav_bar">
             <a href="#home">home</a>
             <div class="dropdown">
                 <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
@@ -62,21 +62,21 @@
 
 <div class="login-form-container">
 
-  <div id="close-login-btn" class="fas fa-times"></div>
+    <div id="close-login-btn" class="fas fa-times"></div>
 
-  <form action="">
-      <h3>sign in</h3>
-      <span>username</span>
-      <input type="email" name="" class="box" placeholder="enter your email" id="">
-      <span>password</span>
-      <input type="password" name="" class="box" placeholder="enter your password" id="">
-      <div class="checkbox">
-          <input type="checkbox" name="" id="remember-me">
-          <label for="remember-me"> remember me</label>
-      </div>
-      <input type="submit" value="sign in" class="btn">
-      <p>forget password ? <a href="#">click here</a></p>
-      <p>don't have an account ? <a href="#">create one</a></p>
-  </form>
+    <form action="">
+        <h3>sign in</h3>
+        <span>username</span>
+        <input type="email" name="" class="box" placeholder="enter your email" id="">
+        <span>password</span>
+        <input type="password" name="" class="box" placeholder="enter your password" id="">
+        <div class="checkbox">
+            <input type="checkbox" name="" id="remember-me">
+            <label for="remember-me"> remember me</label>
+        </div>
+        <input type="submit" value="sign in" class="btn">
+        <p>forget password ? <a href="#">click here</a></p>
+        <p>don't have an account ? <a href="#">create one</a></p>
+    </form>
 
 </div>

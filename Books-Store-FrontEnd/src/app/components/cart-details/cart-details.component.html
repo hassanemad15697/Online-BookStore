@@ -1,0 +1,59 @@
+<div class="body">
+    <div class="card">
+        <div class="row" *ngIf="cartItems.length > 0">
+            <div class="col-md-8 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h4><b>Shopping Cart</b></h4>
+                        </div>
+                        <div class="col align-self-center text-right text-muted">{{totalQuantity}} items</div>
+                    </div>
+                </div>
+                <div *ngFor="let cartItem of cartItems">
+                    <div class="row border-top border-bottom">
+                        <div class="row main align-items-center">
+                            <div class="col-2" routerLink="/product/{{cartItem.id}}"><img class="img-fluid" src="{{cartItem.image_url}}"></div>
+                            <div class="col" routerLink="/product/{{cartItem.id}}">
+                                <div class="row text-muted">{{cartItem.title}}</div>
+                                <div class="row">{{cartItem.title}}</div>
+                            </div>
+                            <div class="col"> <a *ngIf="cartItem.quantity>1"
+                                    (click)="decrementQuantity(cartItem)">-</a><a
+                                    class="border">{{cartItem.quantity}}</a><a (click)="addToCart(cartItem)">+</a>
+                            </div>
+                            <div class="col">&euro; {{cartItem.price*cartItem.quantity}}<span
+                                    (click)="removeFromCart(cartItem)" class="close"> remove</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            </div>
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Summary</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">ITEMS {{totalQuantity}}</div>
+                    <div class="col text-right">&euro; {{totalPrice}}</div>
+                </div>
+                <form>
+                    <p>SHIPPING</p> <select>
+                        <option class="text-muted">Standard-Delivery- &euro;5.00</option>
+                    </select>
+                    <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
+                </form>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">TOTAL PRICE</div>
+                    <div class="col text-right">&euro; {{totalPrice}}</div>
+                </div> <div  class="btn btn-primary btn-lg btn-block">Check out</div>
+            </div>
+        </div>
+
+        <div *ngIf="cartItems.length == 0">
+            <h1 class="heading"> <span>The cart is empty</span> </h1>
+        </div>
+    </div>
+</div>

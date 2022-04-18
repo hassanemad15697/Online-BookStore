@@ -6,6 +6,7 @@ import { FeaturedBooks } from 'src/app/model/featured-books';
 import { CartService } from 'src/app/service/cart.service';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { SearchByCategoryService } from 'src/app/service/search-by-category.service';
+import { ToastService } from 'src/app/service/toast.service';
 import { SwiperOptions } from 'swiper';
 
 @Component({
@@ -27,7 +28,7 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private searchByCategoryService: SearchByCategoryService,
-    private cartService: CartService) { }
+    private cartService: CartService, public toastService: ToastService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -95,6 +96,14 @@ export class SearchResultsComponent implements OnInit {
   addtoCart(book: FeaturedBooks) {
     let cartItem = new CartItem(book);
     this.cartService.addToCart(cartItem);
+    this.showSuccess();
+  }
+
+  showSuccess() {
+    this.toastService.show('Book added successfuly to the cart', { classname: 'bg-success text-light ', delay: 5000  });
+  }
+  ngOnDestroy(): void {
+    this.toastService.clear();
   }
   config: SwiperOptions = {
     spaceBetween: 30,

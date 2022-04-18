@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FeaturedBooks } from 'src/app/model/featured-books';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
+import { ToastService } from 'src/app/service/toast.service';
 import { SwiperOptions } from 'swiper';
 @Component({
   selector: 'app-arrivals-books',
@@ -28,6 +29,8 @@ export class ArrivalsBooksComponent implements OnInit {
     );
 
   }
+
+ 
   config: SwiperOptions = {
     spaceBetween: 30,
     loop: true,

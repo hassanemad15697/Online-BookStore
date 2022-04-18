@@ -3,6 +3,7 @@ import { CartItem } from 'src/app/model/cart-item';
 import { FeaturedBooks } from 'src/app/model/featured-books';
 import { CartService } from 'src/app/service/cart.service';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
+import { ToastService } from 'src/app/service/toast.service';
 import { SwiperOptions } from 'swiper/types/swiper-options';
 
 @Component({
@@ -14,7 +15,7 @@ export class FeaturedBooksComponent implements OnInit {
 
   featuredBooks: FeaturedBooks[] = [];
   constructor(private featuredBooksService: FeaturedBooksService,
-    private cartService: CartService) { }
+    private cartService: CartService, public toastService: ToastService) { }
 
   ngOnInit(): void {
     this.listBooks();
@@ -30,6 +31,13 @@ export class FeaturedBooksComponent implements OnInit {
   addtoCart(book: FeaturedBooks) {
     let cartItem = new CartItem(book);
     this.cartService.addToCart(cartItem);
+    this.showSuccess();
+  }
+   showSuccess() {
+    this.toastService.show('Book added successfuly to the cart', { classname: 'bg-success text-light ', delay: 5000 });
+  }
+  ngOnDestroy(): void {
+    this.toastService.clear();
   }
   config: SwiperOptions = {
     spaceBetween: 30,
