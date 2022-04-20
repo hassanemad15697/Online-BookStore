@@ -1,0 +1,87 @@
+<div class="login-form-container">
+    <form [formGroup]="checkoutFormGroup" (ngSubmit)="onSubmit()">
+        <div class="subform1">
+            <div formGroupName="customer" class="subform2">
+                <h3>User Details</h3>
+                <span>First Name</span>
+                <input type="text" name="" class="box" placeholder="enter your firstName" id=""
+                    formControlName="firstName">
+                <span>Last Name</span>
+                <input type="text" name="" class="box" placeholder="enter your lastName" id=""
+                    formControlName="lastName">
+                <span>Email</span>
+                <input type="email" name="" class="box" placeholder="enter your email" id="" formControlName="email">
+                <span>Mobile</span>
+                <input type="text" name="" class="box" placeholder="enter your lastName" id="" formControlName="mobile">
+                <div class="subform3"> 
+                    <span>Total Quantity : {{totalQuantity}}</span>
+                    <span>Shipping : 5$</span>
+                    <span>Total Price : {{(totalPrice+5).toFixed(2)}}</span>
+                </div>
+            </div>
+            <div formGroupName="shippingAddress" class="subform2">
+                <h3>Shipping Address</h3>
+                <span>Country</span>
+                <select formControlName="country" class="box">
+                    <option value="italy">italy</option>
+                </select>
+                <span>State</span>
+                <select formControlName="state" class="box">
+                    <option value="italy">italy</option>
+                </select>
+                <span>City</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="city">
+                <span>Street</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="street">
+                <span>Zip Code</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="zipCode">
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="remember-me">
+                    <label for="remember-me"> Shipping Address same as Billing Address</label>
+                </div>
+            </div>
+            <div formGroupName="billingAddress" class="subform2">
+                <h3>Billing Address</h3>
+                <span>Country</span>
+                <select formControlName="country" class="box">
+                    <option value="italy">italy</option>
+                </select>
+                <span>State</span>
+                <select formControlName="state" class="box">
+                    <option value="Lombardia">Lombardia</option>
+                </select>
+                <span>City</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="city">
+                <span>Street</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="street">
+                <span>Zip Code</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="zipCode">
+            </div>
+            <div formGroupName="creditCard" class="subform2">
+                <h3>Credit Card</h3>
+                <span>cardType</span>
+                <select formControlName="cardType" class="box">
+                    <option value="visa">Visa</option>
+                    <option value="master">Master Card</option>
+                </select>
+                <span>fullName</span>
+                <input type="text" name="" class="box" placeholder="enter your lastName" id=""
+                    formControlName="fullName">
+                <span>cardNumber</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id=""
+                    formControlName="cardNumber">
+                <span>expYear</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="expYear">
+                <span>expMonth</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="expMonth">
+                <span>sercurityCode</span>
+                <input type="text" name="" class="box" placeholder="enter your email" id=""
+                    formControlName="sercurityCode">
+
+            </div>
+
+
+        </div>
+        <input type="submit" value="Purchase" class="btn">
+    </form>
+</div>

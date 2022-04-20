@@ -1,59 +1,54 @@
-<div class="body">
-    <div class="card">
-        <div class="row" *ngIf="cartItems.length > 0">
-            <div class="col-md-8 cart">
-                <div class="title">
-                    <div class="row">
-                        <div class="col">
-                            <h4><b>Shopping Cart</b></h4>
-                        </div>
-                        <div class="col align-self-center text-right text-muted">{{totalQuantity}} items</div>
-                    </div>
-                </div>
+<div class="login-form-container">
+    <form>
+        <div class="subform1" *ngIf="cartItems.length > 0">
+            <div class="subform21">
+                <h3>Cart Details</h3>
                 <div *ngFor="let cartItem of cartItems">
-                    <div class="row border-top border-bottom">
-                        <div class="row main align-items-center">
-                            <div class="col-2" routerLink="/product/{{cartItem.id}}"><img class="img-fluid" src="{{cartItem.image_url}}"></div>
-                            <div class="col" routerLink="/product/{{cartItem.id}}">
-                                <div class="row text-muted">{{cartItem.title}}</div>
-                                <div class="row">{{cartItem.title}}</div>
-                            </div>
-                            <div class="col"> <a *ngIf="cartItem.quantity>1"
-                                    (click)="decrementQuantity(cartItem)">-</a><a
-                                    class="border">{{cartItem.quantity}}</a><a (click)="addToCart(cartItem)">+</a>
-                            </div>
-                            <div class="col">&euro; {{cartItem.price*cartItem.quantity}}<span
-                                    (click)="removeFromCart(cartItem)" class="close"> remove</span></div>
+                    <div class="subform3">
+                        <div class="productImage" routerLink="/product/{{cartItem.id}}"><img class="img-fluid"
+                                src="{{cartItem.image_url}}"></div>
+                        <div class="productData">
+                            <span>{{cartItem.title}}</span>
+                            <span>Book Price : {{cartItem.price.toFixed(2)}}</span>
+                            <span>Total Quantity : {{cartItem.quantity}}</span>
+                            <span>Discount : {{cartItem.discount}}%</span>
+                            <span>Total Price :
+                                {{((cartItem.quantity*cartItem.price)/100*(100-cartItem.discount)).toFixed(2)}}</span>
                         </div>
+                        <div class="productControl">
+                            <div class="productControl-btn">
+                                <a *ngIf="cartItem.quantity>1" (click)="decrementQuantity(cartItem)" class="bt">-</a><a
+                                    class="quantity"> {{cartItem.quantity}} </a><a (click)="addToCart(cartItem)"
+                                    class="bt">+</a>
+                            </div>
+                            <br>
+                            <span (click)="removeFromCart(cartItem)"> remove</span>
+                        </div>
+
                     </div>
                 </div>
-
-                <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
             </div>
-            <div class="col-md-4 summary">
-                <div>
-                    <h5><b>Summary</b></h5>
+            <div class="subform22">
+                <h3>Summary</h3>
+                <span>ITEMS {{totalQuantity}}</span>
+                <span>Total Order Price : {{totalPrice.toFixed(2)}} &euro; </span>
+                <span>SHIPPING</span>
+                <select class="box">
+                    <option value="1">Standard-Delivery- &euro;5.00</option>
+                </select>
+
+                <span>GIVE CODE</span>
+                <input type="text" name="" class="box" placeholder="Enter your code" id="">
+
+                <div class="checkbox">
+                    <input type="checkbox" name="" id="remember-me">
+                    <label for="remember-me"> Shipping Address same as Billing Address</label>
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col" style="padding-left:0;">ITEMS {{totalQuantity}}</div>
-                    <div class="col text-right">&euro; {{totalPrice}}</div>
-                </div>
-                <form>
-                    <p>SHIPPING</p> <select>
-                        <option class="text-muted">Standard-Delivery- &euro;5.00</option>
-                    </select>
-                    <p>GIVE CODE</p> <input id="code" placeholder="Enter your code">
-                </form>
-                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">&euro; {{totalPrice}}</div>
-                </div> <div  class="btn btn-primary btn-lg btn-block">Check out</div>
+                <input type="submit" value="Purchase" class="btn" routerLink="/checkout">
             </div>
         </div>
-
         <div *ngIf="cartItems.length == 0">
-            <h1 class="heading"> <span>The cart is empty</span> </h1>
+            <h3>The Cart Is Empty</h3>
         </div>
-    </div>
+    </form>
 </div>

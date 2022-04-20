@@ -22,12 +22,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartService } from './service/cart.service';
 import { ToastsContainer } from './components/toast/toast.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: 'product-details', component: CartDetailsComponent },
   { path: 'category/:id', component: SearchResultsComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: SearchResultsComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'category', component: HomeComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: HomeComponent }
@@ -48,14 +51,16 @@ const routes: Routes = [
     SearchResultsComponent,
     ProductDetailsComponent,
     ToastsContainer,
-    CartDetailsComponent
+    CartDetailsComponent,
+    CheckoutComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
     NgxUsefulSwiperModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
     FeaturedBooksService,

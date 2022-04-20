@@ -13,7 +13,7 @@
         <div class="icons">
             <div id="search-btn" class="fas fa-search"></div>
             <a routerLink="/product-details">
-                <div class="total">{{totalPrice}} $ <span> {{totalQuantity}}</span> </div>
+                <div class="total">{{totalPrice.toFixed(2)}} $ <span> {{totalQuantity}}</span> </div>
                 <i class="fa fa-shopping-cart" aria-hidden="true">
                 </i>
             </a>
@@ -24,14 +24,14 @@
     </div>
 
     <div class="header-2">
- 
+  
         <nav class="nav_bar">
             <a href="#home">home</a>
             <div class="dropdown">
                 <button class="dropbtn">Categories<i class="fa fa-caret-down"></i></button>
                 <div class="dropdown-content">
-                    <div class="row">
-                        <div class="column" *ngFor="let booksCategory of booksCategories">
+                    <div class="row" *ngFor="let booksCategory of booksCategories">
+                        <div class="column" >
                             <a routerLink="category/{{booksCategory.id}}">{{booksCategory.category_name}}</a>
                         </div>
                     </div>

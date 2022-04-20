@@ -59,7 +59,7 @@ export class CartService {
     let totalQuantityValue: number = 0;
 
     for (let item of this.cartItems) {
-      totalPriceValue += item.price * item.quantity;
+      totalPriceValue += ((item.price * item.quantity) / 100 * (100 - item.discount));
       totalQuantityValue += item.quantity;
     }
 

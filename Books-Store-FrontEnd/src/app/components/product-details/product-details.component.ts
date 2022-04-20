@@ -51,13 +51,15 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       }
     )
   }
-  addtoCart(book: FeaturedBooks) {
+  addtoCart(book: FeaturedBooks, quantity: string) {
     let cartItem = new CartItem(book);
-    this.cartService.addToCart(cartItem);
+    for (let i: number = 0; i < Number(quantity); i++) {
+      this.cartService.addToCart(cartItem);
+    }
     this.showSuccess();
   }
   showSuccess() {
-    this.toastService.show('Book added successfuly to the cart', { classname: 'bg-success text-light ', delay: 5000  });
+    this.toastService.show('Book added successfuly to the cart', { classname: 'bg-success text-light ', delay: 5000 });
   }
   ngOnDestroy(): void {
     this.toastService.clear();
