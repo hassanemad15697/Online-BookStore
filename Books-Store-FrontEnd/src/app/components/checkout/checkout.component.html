@@ -12,8 +12,8 @@
                 <span>Email</span>
                 <input type="email" name="" class="box" placeholder="enter your email" id="" formControlName="email">
                 <span>Mobile</span>
-                <input type="text" name="" class="box" placeholder="enter your lastName" id="" formControlName="mobile">
-                <div class="subform3"> 
+                <input type="text" name="" class="box" placeholder="enter your mobile number" id="" formControlName="mobile">
+                <div class="subform3">
                     <span>Total Quantity : {{totalQuantity}}</span>
                     <span>Shipping : 5$</span>
                     <span>Total Price : {{(totalPrice+5).toFixed(2)}}</span>
@@ -22,40 +22,44 @@
             <div formGroupName="shippingAddress" class="subform2">
                 <h3>Shipping Address</h3>
                 <span>Country</span>
-                <select formControlName="country" class="box">
-                    <option value="italy">italy</option>
+                <select formControlName="country" class="box" (change)="handleStates('shippingAddress')">
+                    <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                 </select>
                 <span>State</span>
-                <select formControlName="state" class="box">
-                    <option value="italy">italy</option>
+                <select formControlName="state" class="box" (change)="handleCities('shippingAddress')">
+                    <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                 </select>
                 <span>City</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="city">
+                <select formControlName="city" class="box">
+                    <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
+                </select>
                 <span>Street</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="street">
+                <input type="text" name="" class="box" placeholder="enter your street address" id="" formControlName="street">
                 <span>Zip Code</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="zipCode">
-                <div class="checkbox">
-                    <input type="checkbox" name="" id="remember-me">
+                <input type="text" name="" class="box" placeholder="enter your zip code" id="" formControlName="zipCode">
+                <div class="checkbox" >
+                    <input (change)="copyShippingAddressToBillingAddress($event)" type="checkbox" name="" id="remember-me">
                     <label for="remember-me"> Shipping Address same as Billing Address</label>
                 </div>
             </div>
             <div formGroupName="billingAddress" class="subform2">
                 <h3>Billing Address</h3>
                 <span>Country</span>
-                <select formControlName="country" class="box">
-                    <option value="italy">italy</option>
+                <select formControlName="country" class="box" (change)="handleStates('billingAddress')">
+                    <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                 </select>
                 <span>State</span>
-                <select formControlName="state" class="box">
-                    <option value="Lombardia">Lombardia</option>
+                <select formControlName="state" class="box" (change)="handleCities('billingAddress')">
+                    <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                 </select>
                 <span>City</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="city">
+                <select formControlName="city" class="box">
+                    <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
+                </select>
                 <span>Street</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="street">
+                <input type="text" name="" class="box" placeholder="enter your street address" id="" formControlName="street">
                 <span>Zip Code</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="zipCode">
+                <input type="text" name="" class="box" placeholder="enter your zip code" id="" formControlName="zipCode">
             </div>
             <div formGroupName="creditCard" class="subform2">
                 <h3>Credit Card</h3>
@@ -71,9 +75,13 @@
                 <input type="text" name="" class="box" placeholder="enter your email" id=""
                     formControlName="cardNumber">
                 <span>expYear</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="expYear">
+                <select formControlName="expYear" class="box" (change)="handleMonthsBasedOnYear()">
+                    <option *ngFor="let year of years">{{year}}</option>
+                </select>
                 <span>expMonth</span>
-                <input type="text" name="" class="box" placeholder="enter your email" id="" formControlName="expMonth">
+                <select formControlName="expMonth" class="box">
+                    <option *ngFor="let month of months">{{month}}</option>
+                </select>
                 <span>sercurityCode</span>
                 <input type="text" name="" class="box" placeholder="enter your email" id=""
                     formControlName="sercurityCode">

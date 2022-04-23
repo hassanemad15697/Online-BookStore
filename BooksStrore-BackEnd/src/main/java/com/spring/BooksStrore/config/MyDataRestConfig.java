@@ -1,6 +1,6 @@
 package com.spring.BooksStrore.config;
 
-import com.spring.BooksStrore.entity.Books;
+import com.spring.BooksStrore.entity.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -28,14 +28,29 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] unsupportedActions = {HttpMethod.PUT,HttpMethod.DELETE,HttpMethod.POST};
 
         //this block of code will disable those HTTP Methods for books API
-        config.getExposureConfiguration().forDomainType(Books.class).
-                withItemExposure((metdata, httpMethods) -> httpMethods.disable(unsupportedActions)).
-                withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(unsupportedActions));
+        blockMethodsForEntity(Books.class,unsupportedActions,config);
+        //this block of code will disable those HTTP Methods for BookCategory API
+        blockMethodsForEntity(BookCategory.class,unsupportedActions,config);
+        //this block of code will disable those HTTP Methods for BookLanguages API
+        blockMethodsForEntity(BookLanguages.class,unsupportedActions,config);
+        //this block of code will disable those HTTP Methods for City API
+        blockMethodsForEntity(City.class,unsupportedActions,config);
+        //this block of code will disable those HTTP Methods for Country API
+        blockMethodsForEntity(Country.class,unsupportedActions,config);
+        //this block of code will disable those HTTP Methods for State API
+        blockMethodsForEntity(State.class,unsupportedActions,config);
+        //this block of code will disable those HTTP Methods for Publisher API
+        blockMethodsForEntity(Publisher.class,unsupportedActions,config);
 
         // method to expose the entity ids
         exposeIds(config);
     }
 
+    private void blockMethodsForEntity(Class theClass,HttpMethod[] unsupportedActions ,RepositoryRestConfiguration config){
+        config.getExposureConfiguration().forDomainType(theClass).
+                withItemExposure((metdata, httpMethods) -> httpMethods.disable(unsupportedActions)).
+                withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(unsupportedActions));
+    }
     private void exposeIds(RepositoryRestConfiguration config) {
         Set<EntityType<?>> entities = entityManager.getMetamodel().getEntities();
 
