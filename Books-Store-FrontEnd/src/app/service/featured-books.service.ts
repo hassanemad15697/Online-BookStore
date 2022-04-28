@@ -9,7 +9,7 @@ import { FeaturedBooks } from '../model/featured-books';
 export class FeaturedBooksService {
 
 
-  private baseUrl = 'http://localhost:8080/api/books?size=25'
+  private baseUrl = 'http://localhost:8080/api/books?size=100'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,11 +17,11 @@ export class FeaturedBooksService {
     return this.httpClient.get<GetResponse>(this.baseUrl).pipe(map(Response => Response._embedded.books));
   }
   getDiscountedBooksList(): Observable<FeaturedBooks[]> {
-    let discountedBooksURL = 'http://localhost:8080/api/books/search/findByOrderByDiscountDesc';
+    let discountedBooksURL = 'http://localhost:8080/api/books/search/findByOrderByDiscountDesc?size=100';
     return this.httpClient.get<GetResponse>(discountedBooksURL).pipe(map(Response => Response._embedded.books));
   }
   getArrivalBooksList(num: number) {
-    let arrivalBooksURL = `http://localhost:8080/api/books/search/findByOrderByPublicationDateDesc?size=25&page=${num}`;
+    let arrivalBooksURL = `http://localhost:8080/api/books/search/findByOrderByPublicationDateDesc?size=100&page=${num}`;
     return this.httpClient.get<GetResponse>(arrivalBooksURL).pipe(map(Response => Response._embedded.books));
   }
 }

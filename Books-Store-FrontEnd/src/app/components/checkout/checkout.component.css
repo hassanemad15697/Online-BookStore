@@ -23,6 +23,13 @@
     margin: 2rem;
     
 }
+.login-form-container form .subform1 .subform2 span{
+    display: flex;
+}
+.login-form-container form .subform1 .subform2 span .error{
+    padding: 0px 0px 0px 5px;
+    color: red;
+}
 .login-form-container form  .subform1 .subform2 .subform3 {
     background: #fff;
     border: var(--border);

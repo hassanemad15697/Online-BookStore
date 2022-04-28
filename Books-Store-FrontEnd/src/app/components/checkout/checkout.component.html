@@ -3,16 +3,55 @@
         <div class="subform1">
             <div formGroupName="customer" class="subform2">
                 <h3>User Details</h3>
-                <span>First Name</span>
+                <span>First Name
+                    <div *ngIf="(firstName?.invalid) && (firstName?.dirty || firstName?.touched)" class="error">
+
+                        <div *ngIf="firstName?.errors?.['required'] || firstName?.errors?.['notOnlyWhiteSpace']">
+                            Is Required
+                        </div>
+                        <div *ngIf="firstName?.errors?.['minlength']">
+                            Min length is 2
+                        </div>
+
+                    </div>
+                </span>
                 <input type="text" name="" class="box" placeholder="enter your firstName" id=""
                     formControlName="firstName">
-                <span>Last Name</span>
+                <span>Last Name
+                    <div *ngIf="(lastName?.invalid) && (lastName?.dirty || lastName?.touched)" class="error">
+                        <div *ngIf="lastName?.errors?.['required'] || lastName?.errors?.['notOnlyWhiteSpace']">
+                            Is Required
+                        </div>
+                        <div *ngIf="lastName?.errors?.['minlength']">
+                            Min length is 2
+                        </div>
+                    </div>
+                </span>
                 <input type="text" name="" class="box" placeholder="enter your lastName" id=""
                     formControlName="lastName">
-                <span>Email</span>
+                <span>Email
+                    <div *ngIf="(email?.invalid) && (email?.dirty || email?.touched)" class="error">
+                        <div *ngIf="email?.errors?.['required']">
+                            Is Required
+                        </div>
+                        <div *ngIf="email?.errors?.['pattern']">
+                            You must isert an email
+                        </div>
+                    </div>
+                </span>
                 <input type="email" name="" class="box" placeholder="enter your email" id="" formControlName="email">
-                <span>Mobile</span>
-                <input type="text" name="" class="box" placeholder="enter your mobile number" id="" formControlName="mobile">
+                <span>Mobile
+                    <div *ngIf="(mobile?.invalid) && (mobile?.dirty || mobile?.touched)" class="error">
+                        <div *ngIf="mobile?.errors?.['required']">
+                            Is Required
+                        </div>
+                        <div *ngIf="mobile?.errors?.['pattern']">
+                            You must isert a mobile
+                        </div>
+                    </div>
+                </span>
+                <input type="text" name="" class="box" placeholder="enter your mobile number" id=""
+                    formControlName="mobile">
                 <div class="subform3">
                     <span>Total Quantity : {{totalQuantity}}</span>
                     <span>Shipping : 5$</span>
@@ -21,68 +60,195 @@
             </div>
             <div formGroupName="shippingAddress" class="subform2">
                 <h3>Shipping Address</h3>
-                <span>Country</span>
+                <span>Country
+                    <div *ngIf="(shippingCountry?.invalid) && (shippingCountry?.dirty || shippingCountry?.touched)"
+                        class="error">
+                        <div *ngIf="shippingCountry?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="country" class="box" (change)="handleStates('shippingAddress')">
                     <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                 </select>
-                <span>State</span>
+                <span>State
+                    <div *ngIf="(shippingState?.invalid) && (shippingState?.dirty || shippingState?.touched)"
+                        class="error">
+                        <div *ngIf="shippingState?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="state" class="box" (change)="handleCities('shippingAddress')">
                     <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                 </select>
-                <span>City</span>
+                <span>City
+                    <div *ngIf="(shippingCity?.invalid) && (shippingCity?.dirty || shippingCity?.touched)"
+                        class="error">
+                        <div *ngIf="shippingCity?.errors?.['required'] ">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="city" class="box">
                     <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
                 </select>
-                <span>Street</span>
-                <input type="text" name="" class="box" placeholder="enter your street address" id="" formControlName="street">
-                <span>Zip Code</span>
-                <input type="text" name="" class="box" placeholder="enter your zip code" id="" formControlName="zipCode">
-                <div class="checkbox" >
-                    <input (change)="copyShippingAddressToBillingAddress($event)" type="checkbox" name="" id="remember-me">
+                <span>Street
+                    <div *ngIf="(shippingStreet?.invalid) && (shippingStreet?.dirty || shippingStreet?.touched)"
+                        class="error">
+                        <div
+                            *ngIf="shippingStreet?.errors?.['required']|| shippingStreet?.errors?.['notOnlyWhiteSpace']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
+                <input type="text" name="" class="box" placeholder="enter your street address" id=""
+                    formControlName="street">
+                <span>Zip Code
+                    <div *ngIf="(shippingZipCode?.invalid) && (shippingZipCode?.dirty || shippingZipCode?.touched)"
+                        class="error">
+                        <div *ngIf="shippingZipCode?.errors?.['required']">
+                            Is Required
+                        </div>
+                        <div *ngIf="shippingZipCode?.errors?.['pattern']">
+                            Insert a valid value
+                        </div>
+                    </div>
+                </span>
+                <input type="text" name="" class="box" placeholder="enter your zip code" id=""
+                    formControlName="zipCode">
+                <div class="checkbox">
+                    <input (change)="copyShippingAddressToBillingAddress($event)" type="checkbox" name=""
+                        id="remember-me">
                     <label for="remember-me"> Shipping Address same as Billing Address</label>
                 </div>
             </div>
             <div formGroupName="billingAddress" class="subform2">
                 <h3>Billing Address</h3>
-                <span>Country</span>
+                <span>Country
+                    <div *ngIf="(billingCountry?.invalid) && (billingCountry?.dirty || billingCountry?.touched)"
+                        class="error">
+                        <div *ngIf="billingCountry?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="country" class="box" (change)="handleStates('billingAddress')">
                     <option *ngFor="let country of countries" [ngValue]="country">{{country.name}}</option>
                 </select>
-                <span>State</span>
+                <span>State
+                    <div *ngIf="(billingState?.invalid) && (billingState?.dirty || billingState?.touched)"
+                        class="error">
+                        <div *ngIf="billingState?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="state" class="box" (change)="handleCities('billingAddress')">
                     <option *ngFor="let state of states" [ngValue]="state">{{state.name}}</option>
                 </select>
-                <span>City</span>
+                <span>City
+                    <div *ngIf="(billingCity?.invalid) && (billingCity?.dirty || billingCity?.touched)" class="error">
+                        <div *ngIf="billingCity?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="city" class="box">
                     <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
                 </select>
-                <span>Street</span>
-                <input type="text" name="" class="box" placeholder="enter your street address" id="" formControlName="street">
-                <span>Zip Code</span>
-                <input type="text" name="" class="box" placeholder="enter your zip code" id="" formControlName="zipCode">
+                <span>Street
+                    <div *ngIf="(billingStreet?.invalid) && (billingStreet?.dirty || billingStreet?.touched)"
+                        class="error">
+                        <div *ngIf="billingStreet?.errors?.['required']|| billingStreet?.errors?.['notOnlyWhiteSpace']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
+                <input type="text" name="" class="box" placeholder="enter your street address" id=""
+                    formControlName="street">
+                <span>Zip Code
+                    <div *ngIf="(billingZipCode?.invalid) && (billingZipCode?.dirty || billingZipCode?.touched)"
+                        class="error">
+                        <div *ngIf="billingZipCode?.errors?.['required']">
+                            Is Required
+                        </div>
+                        <div *ngIf="billingZipCode?.errors?.['pattern']">
+                            Insert a valid value
+                        </div>
+                    </div>
+                </span>
+                <input type="text" name="" class="box" placeholder="enter your zip code" id=""
+                    formControlName="zipCode">
             </div>
             <div formGroupName="creditCard" class="subform2">
                 <h3>Credit Card</h3>
-                <span>cardType</span>
+                <span>cardType
+                    <div *ngIf="(cardType?.invalid) && (cardType?.dirty || cardType?.touched)" class="error">
+                        <div *ngIf="cardType?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="cardType" class="box">
                     <option value="visa">Visa</option>
                     <option value="master">Master Card</option>
                 </select>
-                <span>fullName</span>
+                <span>fullName
+                    <div *ngIf="(fullName?.invalid) && (fullName?.dirty || fullName?.touched)" class="error">
+                        <div *ngIf="fullName?.errors?.['required'] || fullName?.errors?.['notOnlyWhiteSpace']">
+                            Is Required
+                        </div>
+                        <div *ngIf="fullName?.errors?.['minlength']">
+                            Min Length is 8
+                        </div>
+                    </div>
+                </span>
                 <input type="text" name="" class="box" placeholder="enter your lastName" id=""
                     formControlName="fullName">
-                <span>cardNumber</span>
+                <span>cardNumber
+                    <div *ngIf="(cardNumber?.invalid) && (cardNumber?.dirty || cardNumber?.touched)" class="error">
+                        <div *ngIf="cardNumber?.errors?.['required']">
+                            Is Required
+                        </div>
+                        <div *ngIf="cardNumber?.errors?.['pattern']">
+                            Insert a valid value
+                        </div>
+                    </div>
+                </span>
                 <input type="text" name="" class="box" placeholder="enter your email" id=""
                     formControlName="cardNumber">
-                <span>expYear</span>
+                <span>expYear
+                    <div *ngIf="(expYear?.invalid) && (expYear?.dirty || expYear?.touched)" class="error">
+                        <div *ngIf="expYear?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="expYear" class="box" (change)="handleMonthsBasedOnYear()">
                     <option *ngFor="let year of years">{{year}}</option>
                 </select>
-                <span>expMonth</span>
+                <span>expMonth
+                    <div *ngIf="(expMonth?.invalid) && (expMonth?.dirty || expMonth?.touched)" class="error">
+                        <div *ngIf="expMonth?.errors?.['required']">
+                            Is Required
+                        </div>
+                    </div>
+                </span>
                 <select formControlName="expMonth" class="box">
                     <option *ngFor="let month of months">{{month}}</option>
                 </select>
-                <span>sercurityCode</span>
+                <span>sercurityCode
+                    <div *ngIf="(sercurityCode?.invalid) && (sercurityCode?.dirty || sercurityCode?.touched)"
+                        class="error">
+                        <div *ngIf="sercurityCode?.errors?.['required']">
+                            Is Required
+                        </div>
+                        <div *ngIf="sercurityCode?.errors?.['pattern']">
+                            Insert a valid value
+                        </div>
+                    </div>
+                </span>
                 <input type="text" name="" class="box" placeholder="enter your email" id=""
                     formControlName="sercurityCode">
 

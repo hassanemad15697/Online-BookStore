@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="state")
+@Table(name="states")
 @Getter
 @Setter
 public class State {
