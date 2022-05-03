@@ -4,31 +4,31 @@
             <div formGroupName="customer" class="subform2">
                 <h3>User Details</h3>
                 <span>First Name
-                    <div *ngIf="(firstName?.invalid) && (firstName?.dirty || firstName?.touched)" class="error">
+                    <div *ngIf="(first_name?.invalid) && (first_name?.dirty || first_name?.touched)" class="error">
 
-                        <div *ngIf="firstName?.errors?.['required'] || firstName?.errors?.['notOnlyWhiteSpace']">
+                        <div *ngIf="first_name?.errors?.['required'] || first_name?.errors?.['notOnlyWhiteSpace']">
                             Is Required
                         </div>
-                        <div *ngIf="firstName?.errors?.['minlength']">
+                        <div *ngIf="first_name?.errors?.['minlength']">
                             Min length is 2
                         </div>
 
                     </div>
                 </span>
                 <input type="text" name="" class="box" placeholder="enter your firstName" id=""
-                    formControlName="firstName">
+                    formControlName="first_name">
                 <span>Last Name
-                    <div *ngIf="(lastName?.invalid) && (lastName?.dirty || lastName?.touched)" class="error">
-                        <div *ngIf="lastName?.errors?.['required'] || lastName?.errors?.['notOnlyWhiteSpace']">
+                    <div *ngIf="(last_name?.invalid) && (last_name?.dirty || last_name?.touched)" class="error">
+                        <div *ngIf="last_name?.errors?.['required'] || last_name?.errors?.['notOnlyWhiteSpace']">
                             Is Required
                         </div>
-                        <div *ngIf="lastName?.errors?.['minlength']">
+                        <div *ngIf="last_name?.errors?.['minlength']">
                             Min length is 2
                         </div>
                     </div>
                 </span>
                 <input type="text" name="" class="box" placeholder="enter your lastName" id=""
-                    formControlName="lastName">
+                    formControlName="last_name">
                 <span>Email
                     <div *ngIf="(email?.invalid) && (email?.dirty || email?.touched)" class="error">
                         <div *ngIf="email?.errors?.['required']">
@@ -41,17 +41,17 @@
                 </span>
                 <input type="email" name="" class="box" placeholder="enter your email" id="" formControlName="email">
                 <span>Mobile
-                    <div *ngIf="(mobile?.invalid) && (mobile?.dirty || mobile?.touched)" class="error">
-                        <div *ngIf="mobile?.errors?.['required']">
+                    <div *ngIf="(phone?.invalid) && (phone?.dirty || phone?.touched)" class="error">
+                        <div *ngIf="phone?.errors?.['required']">
                             Is Required
                         </div>
-                        <div *ngIf="mobile?.errors?.['pattern']">
+                        <div *ngIf="phone?.errors?.['pattern']">
                             You must isert a mobile
                         </div>
                     </div>
                 </span>
                 <input type="text" name="" class="box" placeholder="enter your mobile number" id=""
-                    formControlName="mobile">
+                    formControlName="phone">
                 <div class="subform3">
                     <span>Total Quantity : {{totalQuantity}}</span>
                     <span>Shipping : 5$</span>
@@ -116,7 +116,7 @@
                     </div>
                 </span>
                 <input type="text" name="" class="box" placeholder="enter your zip code" id=""
-                    formControlName="zipCode">
+                    formControlName="zip_code">
                 <div class="checkbox">
                     <input (change)="copyShippingAddressToBillingAddress($event)" type="checkbox" name=""
                         id="remember-me">
@@ -179,7 +179,7 @@
                     </div>
                 </span>
                 <input type="text" name="" class="box" placeholder="enter your zip code" id=""
-                    formControlName="zipCode">
+                    formControlName="zip_code">
             </div>
             <div formGroupName="creditCard" class="subform2">
                 <h3>Credit Card</h3>

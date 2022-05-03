@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartItem } from 'src/app/model/cart-item';
-import { FeaturedBooks } from 'src/app/model/featured-books';
+import { Books } from 'src/app/model/books';
 import { CartService } from 'src/app/service/cart.service';
 import { SearchByCategoryService } from 'src/app/service/search-by-category.service';
 import { ToastService } from 'src/app/service/toast.service';
@@ -13,7 +13,7 @@ import { ToastService } from 'src/app/service/toast.service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  bookDetails: FeaturedBooks = new FeaturedBooks();
+  bookDetails: Books = new Books();
   constructor(private route: ActivatedRoute,
     private searchByCategoryService: SearchByCategoryService,
     private cartService: CartService, public toastService: ToastService) { }
@@ -51,7 +51,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       }
     )
   }
-  addtoCart(book: FeaturedBooks, quantity: string) {
+  addtoCart(book: Books, quantity: string) {
     let cartItem = new CartItem(book);
     for (let i: number = 0; i < Number(quantity); i++) {
       this.cartService.addToCart(cartItem);

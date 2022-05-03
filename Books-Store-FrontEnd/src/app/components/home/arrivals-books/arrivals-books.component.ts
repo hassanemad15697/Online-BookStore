@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FeaturedBooks } from 'src/app/model/featured-books';
+import { Books } from 'src/app/model/books';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { ToastService } from 'src/app/service/toast.service';
 import { SwiperOptions } from 'swiper';
@@ -9,8 +9,8 @@ import { SwiperOptions } from 'swiper';
   styleUrls: ['./arrivals-books.component.css']
 })
 export class ArrivalsBooksComponent implements OnInit {
-  arrivalBooks1: FeaturedBooks[] = [];
-  arrivalBooks2: FeaturedBooks[] = [];
+  arrivalBooks1: Books[] = [];
+  arrivalBooks2: Books[] = [];
   constructor(private featuredBooksService: FeaturedBooksService) { }
 
   ngOnInit(): void {

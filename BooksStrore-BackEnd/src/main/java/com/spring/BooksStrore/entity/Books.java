@@ -20,7 +20,7 @@ public class Books {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
+    @Column(name = "id")
     private Long id;
 
     @ManyToOne
@@ -60,4 +60,8 @@ public class Books {
 
     @Column(name = "image_url")
     private String image_url;
+
+    @OneToOne(mappedBy = "books")
+    private OrderItem orderItem;
+
 }

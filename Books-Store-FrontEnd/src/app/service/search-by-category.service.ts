@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { BooksCategory } from '../model/books-category';
-import { FeaturedBooks } from '../model/featured-books';
+import { Books } from '../model/books';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class SearchByCategoryService {
   private baseUrl = 'http://localhost:8080/api';
   constructor(private httpClient: HttpClient) { }
 
-  getBooksList(currentCategoryId: number): Observable<FeaturedBooks[]> {
+  getBooksList(currentCategoryId: number): Observable<Books[]> {
     const searchByCategoryURL: string = `${this.baseUrl}/books/search/findByCategoryId?id=${currentCategoryId}`;
     return this.httpClient.get<GetResponseBooksList>(searchByCategoryURL).pipe(map(Response => Response._embedded.books));
   }
@@ -79,7 +79,7 @@ interface GetResponseBookDetails {
 }
 interface GetResponseBooksList {
   _embedded: {
-    books: FeaturedBooks[];
+    books: Books[];
   },
   page: {
     size: number;

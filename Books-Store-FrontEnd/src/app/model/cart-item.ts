@@ -1,4 +1,4 @@
-import { FeaturedBooks } from "./featured-books";
+import { Books } from "./books";
 
 export class CartItem {
     id: number;
@@ -7,7 +7,7 @@ export class CartItem {
     image_url: string;
     quantity: number;
     discount: number;
-    constructor(book: FeaturedBooks) {
+    constructor(book: Books) {
         this.id = book.id;
         this.title = book.title;
         this.image_url = book.image_url;

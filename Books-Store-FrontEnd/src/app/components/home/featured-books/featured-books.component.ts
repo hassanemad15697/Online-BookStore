@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/model/cart-item';
-import { FeaturedBooks } from 'src/app/model/featured-books';
+import { Books } from 'src/app/model/books';
 import { CartService } from 'src/app/service/cart.service';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { ToastService } from 'src/app/service/toast.service';
@@ -13,7 +13,7 @@ import { SwiperOptions } from 'swiper/types/swiper-options';
 })
 export class FeaturedBooksComponent implements OnInit {
 
-  featuredBooks: FeaturedBooks[] = [];
+  featuredBooks: Books[] = [];
   constructor(private featuredBooksService: FeaturedBooksService,
     private cartService: CartService, public toastService: ToastService) { }
 
@@ -28,7 +28,7 @@ export class FeaturedBooksComponent implements OnInit {
       }
     )
   }
-  addtoCart(book: FeaturedBooks) {
+  addtoCart(book: Books) {
     let cartItem = new CartItem(book);
     this.cartService.addToCart(cartItem);
     this.showSuccess();

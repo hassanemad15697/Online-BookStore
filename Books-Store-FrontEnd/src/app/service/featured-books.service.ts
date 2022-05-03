@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { FeaturedBooks } from '../model/featured-books';
+import { Books } from '../model/books';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,10 @@ export class FeaturedBooksService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getBooksList(): Observable<FeaturedBooks[]> {
+  getBooksList(): Observable<Books[]> {
     return this.httpClient.get<GetResponse>(this.baseUrl).pipe(map(Response => Response._embedded.books));
   }
-  getDiscountedBooksList(): Observable<FeaturedBooks[]> {
+  getDiscountedBooksList(): Observable<Books[]> {
     let discountedBooksURL = 'http://localhost:8080/api/books/search/findByOrderByDiscountDesc?size=100';
     return this.httpClient.get<GetResponse>(discountedBooksURL).pipe(map(Response => Response._embedded.books));
   }
@@ -28,6 +28,6 @@ export class FeaturedBooksService {
 
 interface GetResponse {
   _embedded: {
-    books: FeaturedBooks[];
+    books: Books[];
   }
 }

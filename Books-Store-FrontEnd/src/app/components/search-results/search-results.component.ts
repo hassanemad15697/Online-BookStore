@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { data } from 'jquery';
 import { CartItem } from 'src/app/model/cart-item';
-import { FeaturedBooks } from 'src/app/model/featured-books';
+import { Books } from 'src/app/model/books';
 import { CartService } from 'src/app/service/cart.service';
 import { FeaturedBooksService } from 'src/app/service/featured-books.service';
 import { SearchByCategoryService } from 'src/app/service/search-by-category.service';
@@ -15,7 +15,7 @@ import { SwiperOptions } from 'swiper';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
-  booksByCategory: FeaturedBooks[] = [];
+  booksByCategory: Books[] = [];
   currentCategoryId: number = 0;
   previuosCategoryId: number = 0;
   searchMode: boolean = false;
@@ -93,7 +93,7 @@ export class SearchResultsComponent implements OnInit {
     this.listBooks();
   }
 
-  addtoCart(book: FeaturedBooks) {
+  addtoCart(book: Books) {
     let cartItem = new CartItem(book);
     this.cartService.addToCart(cartItem);
     this.showSuccess();

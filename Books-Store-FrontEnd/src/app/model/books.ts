@@ -1,6 +1,6 @@
 import { BooksCategory } from "./books-category";
 
-export class FeaturedBooks {
+export class Books {
     id: number;
     title: string;
     isbn13: string;
