@@ -3,6 +3,7 @@ package com.spring.BooksStrore.service;
 import com.spring.BooksStrore.dao.CustomerRepository;
 import com.spring.BooksStrore.dto.Purchase;
 import com.spring.BooksStrore.dto.PurchaseResponse;
+import com.spring.BooksStrore.entity.Books;
 import com.spring.BooksStrore.entity.Customer;
 import com.spring.BooksStrore.entity.OrderItem;
 import com.spring.BooksStrore.entity.Orders;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -35,13 +38,19 @@ public class CheckoutServiceImpl implements CheckoutService {
         //populate order with orderItem
         Set<OrderItem> orderItems = purchase.getOrderItems();
         orderItems.forEach(item -> order.add(item));
+
         //populate order with billing and shipping address
         order.setShippingAddress(purchase.getShippingAddress());
         order.setBillingAddress(purchase.getBillingAddress());
         //populate order with customer
         Customer customer = purchase.getCustomer();
         customer.add(order);
-        //save to the database
+
+        System.out.println("quantities : ");
+        for (OrderItem item : orderItems) {
+            System.out.println(item.getQuantity()+"  "+item.getBooks().getId()+"  "+item.getBooks().getTitle());
+
+        }
         customerRepository.save(customer);
         //return response
         return new PurchaseResponse(orderTRackingNumber);

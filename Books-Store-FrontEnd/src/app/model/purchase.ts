@@ -1,5 +1,6 @@
 
 import { BillingAddress } from "./billing-address";
+import { CartItem } from "./cart-item";
 import { Customer } from "./customer";
 import { Order } from "./order";
 import { OrderItem } from "./order-item";

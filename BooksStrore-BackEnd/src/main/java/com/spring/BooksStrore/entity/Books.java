@@ -10,6 +10,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Entity
@@ -61,7 +62,7 @@ public class Books {
     @Column(name = "image_url")
     private String image_url;
 
-    @OneToOne(mappedBy = "books")
+    @OneToOne(mappedBy = "books", cascade = CascadeType.ALL, orphanRemoval = true)
     private OrderItem orderItem;
 
 }

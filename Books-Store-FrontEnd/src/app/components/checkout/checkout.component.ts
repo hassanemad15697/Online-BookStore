@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartItem } from 'src/app/model/cart-item';
 import { City } from 'src/app/model/city';
 import { Country } from 'src/app/model/country';
 import { Order } from 'src/app/model/order';
@@ -148,10 +149,12 @@ export class CheckoutComponent implements OnInit {
     )
     order.status = "Pending";
     //set up the cart items 
+    
     let orderItems: OrderItem[] = [];
     for (let tempItem of this.cartService.cartItems) {
       orderItems.push(new OrderItem(tempItem));
     }
+
     //populate purchase
     let purchase = new Purchase();
     //populate purchase - order & orderItem
@@ -180,33 +183,8 @@ export class CheckoutComponent implements OnInit {
     //call REST API
 
     //done
-    console.log(purchase.customer.first_name);
-    console.log(purchase.customer.last_name);
-    console.log(purchase.customer.email);
-    console.log(purchase.customer.phone);
-    console.log(purchase.order.total_price);
-    console.log(purchase.order.total_quantity);
-    console.log(purchase.order.status);
-    console.log(purchase.shippingAddress.city);
-    console.log(purchase.shippingAddress.country);
-    console.log(purchase.shippingAddress.state);
-    console.log(purchase.shippingAddress.street);
-    console.log(purchase.shippingAddress.zip_code);
-
-    console.log(purchase.billingAddress.city);
-    console.log(purchase.billingAddress.country);
-    console.log(purchase.billingAddress.state);
-    console.log(purchase.billingAddress.street);
-    console.log(purchase.billingAddress.zip_code);
-        //done
-    console.log("orderItems : ");
-    for (let item of purchase.orderItems) {
-      console.log(item.image_url);
-      console.log(item.book_id);
-      console.log(item.quantity);
-      console.log(item.price);
-    }
-
+    console.log(purchase);
+    //done
 
 
     this.checkoutService.placeAnOrder(purchase).subscribe(

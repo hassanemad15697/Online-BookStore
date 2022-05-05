@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "order_item")
@@ -16,22 +17,18 @@ public class OrderItem {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "image_url")
-    private String image_url;
-
     @Column(name = "quantity")
     private int 	quantity;
 
-    @Column(name = "price")
-    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Orders orders;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "book_id",referencedColumnName = "id")
-    private Books books;
+    private Books books = new Books();
+
 
 }
